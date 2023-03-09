@@ -1,0 +1,25 @@
+version: '2'
+services:
+  webserver:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile-apache
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/var/www/html
+    environment:
+      XDEBUG_CONFIG: remote_host=host.docker.internal
+  database:
+    build:
+        context: .
+        dockerfile: ./docker/Dockerfile-mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: applejack
+      MYSQL_USER: rainbow
+      MYSQL_PASSWORD: dash

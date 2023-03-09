@@ -1,0 +1,3 @@
+FROM mysql:8.0.32-oracle
+# run sql setup script
+COPY ../sql/setup.sql /docker-entrypoint-initdb.d/setup.sql
