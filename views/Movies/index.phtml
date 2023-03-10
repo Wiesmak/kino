@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Filmy:</title>
+</head>
+<body>
+    <h1>Filmy:</h1>
+    <ul>
+        <?php /** @var TYPE_NAME $movies */
+        foreach ($movies as $movie): ?>
+            <li>
+                <a href="/movies/show/<?= $movie->getId() ?>">
+                    <?= $movie->getTitle() ?>
+                </a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</body>
+</html>

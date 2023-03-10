@@ -1,3 +1,7 @@
 FROM phpstorm/php-apache:8.2-xdebug3.2
 # enable rewrite module
 RUN a2enmod rewrite
+# install php extensions
+RUN docker-php-ext-install pdo pdo_mysql
+# composer install dependencies
+RUN composer install
