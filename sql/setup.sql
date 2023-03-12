@@ -16,13 +16,23 @@ CREATE TABLE IF NOT EXISTS movies (
     FOREIGN KEY (hall) REFERENCES halls(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci AUTO_INCREMENT=1;
 
+CREATE TABLE IF NOT EXISTS users (
+    id int NOT NULL auto_increment,
+    username varchar(255) NOT NULL,
+    `password` varchar(255) NOT NULL,
+    `admin` boolean default false,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci AUTO_INCREMENT=1;
+
 CREATE TABLE IF NOT EXISTS reservations (
     id int NOT NULL auto_increment,
     movie int NOT NULL,
     hall int NOT NULL,
     `row` int NOT NULL,
     `column` int NOT NULL,
+    `user` int NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (movie) REFERENCES movies(id),
-    FOREIGN KEY (hall) REFERENCES halls(id)
+    FOREIGN KEY (hall) REFERENCES halls(id),
+    FOREIGN KEY (user) REFERENCES users(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci AUTO_INCREMENT=1;
