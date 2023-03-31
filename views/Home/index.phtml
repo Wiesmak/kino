@@ -13,7 +13,13 @@
         <li><a href="/movies">Filmy</a></li>
         <li><a href="/halls">Sale</a></li>
     </ul>
-    <button onclick="window.location.href='./users/login'">Logowanie</button>
-    <button onclick="window.location.href='./users/register'">Rejestracja</button>
+    <?php /** @var bool $logged */?>
+    <?php if (!$logged): ?>
+        <button onclick="window.location.href='./users/login'">Logowanie</button>
+        <button onclick="window.location.href='./users/register'">Rejestracja</button>
+    <?php else: ?>
+        <button onclick="window.location.href='./users/show/<?=$_SESSION['user_id']?>'">Moje rezerwacje</button>
+        <button onclick="window.location.href='./users/logout'">Wyloguj</button>
+    <?php endif; ?>
 </body>
 </html>

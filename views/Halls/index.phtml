@@ -10,7 +10,7 @@
 <body>
 <h1>Sale:</h1>
 <ul>
-    <?php /** @var TYPE_NAME $halls */
+    <?php /** @var \App\Models\Hall[] $halls */
     foreach ($halls as $hall): ?>
         <li>
             <a href="/halls/show/<?= $hall->getId() ?>">

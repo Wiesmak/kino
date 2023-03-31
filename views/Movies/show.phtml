@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Film <?=/** @var TYPE_NAME $movie */
+    <title>Film <?=/** @var \App\Models\Movie $movie */
         $movie->getTitle() ?>
     </title>
 </head>
@@ -13,5 +13,10 @@
     <h1>Film <?= $movie->getTitle() ?></h1>
     <p>Data: <?= date_format($movie->getDate(), 'Y-m-d H:i:s') ?></p>
     <p>Sala: <?= $movie->getHall() ?></p>
+    <p>Opis: <?= $movie->getDescription() ?></p>
+    <form action="/reservations/create" method="POST">
+        <input type="hidden" name="movie" value="<?=$movie->getId()?>">
+        <input type="submit" value="Rezerwuj">
+    </form>
 </body>
 </html>

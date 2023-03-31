@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Film <?=/** @var TYPE_NAME $hall */
+    <title>Film <?=/** @var \App\Models\Hall $hall */
         $hall->getName() ?>
     </title>
 </head>
@@ -18,7 +18,7 @@
         <th>Tytuł</th>
         <th>Data</th>
     </tr>
-    <?php /** @var TYPE_NAME $movies */
+    <?php /** @var \App\Models\Movie $movies */
     foreach ($movies as $movie): ?>
         <tr>
             <td>

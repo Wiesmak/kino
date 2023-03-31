@@ -5,31 +5,40 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <?php /** @var TYPE_NAME $user */ ?>
+    <?php /** @var \App\Models\User $user */ ?>
     <title>
         <?=$user->getUsername() ?>
     </title>
 </head>
 <body>
-<h1><?= $user->getName() ?></h1>
+<h1><?= $user->getUsername() ?></h1>
 <h3>Rezerwacje:</h3>
-<table>
-    <tr>
-        <th>Tytuł</th>
-        <th>Data</th>
-    </tr>
-    <?php /** @var TYPE_NAME $reservations */
-    foreach ($reservations as $reservation): ?>
+<?php /** @var \App\Models\Reservation[] $reservations */?>
+<?php if (empty($reservations)): ?>
+    <p>Brak rezerwacji</p>
+<?php else: ?>
+    <table>
         <tr>
-            <td>
-                <a href="/movies/show/<?= $reservation->getId() ?>">
-                    <?= $reservation->getTitle() ?>
-                </a>
-            </td>
-            <td><?= date_format($reservation->getDate(), 'Y-m-d H:i:s') ?></td>
+            <th>Tytuł</th>
+            <th>Data</th>
         </tr>
-    <?php endforeach; ?>
-</table>
+        <?php foreach ($reservations as $reservation): ?>
+            <tr>
+                <td>
+                    <a href="/movies/show/<?= $reservation->getMovie() ?>">
+                        <?= $reservation->getMovieName() ?>
+                    </a>
+                </td>
+                <td>
+                    <a href="/reservations/show/<?= $reservation->getId() ?>">
+                        <?= date_format($reservation->getMovieDate(), 'Y-m-d H:i:s') ?>
+                    </a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+<?php endif; ?>
+<button onclick="window.location.href = '/'">Przeglądaj filmy</button>
 </body>
 </html>
 

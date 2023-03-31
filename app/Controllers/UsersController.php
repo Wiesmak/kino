@@ -26,6 +26,7 @@ class UsersController
                 ]
             );
             $user = $user->find(['username' => $_POST['username']])[0];
+            $_SESSION['user_id'] = $user->getId();
             self::show($user->getId());
         }
     }
@@ -37,6 +38,8 @@ class UsersController
 
     public static function login(): void
     {
+        if(isset($_SESSION['user_id']))
+            self::show($_SESSION['user_id']);
         if (!isset($_POST['username']) || !isset($_POST['password']))
             require_once APP_ROOT . '/Views/Users/login.phtml';
         else {
@@ -58,10 +61,19 @@ class UsersController
         }
     }
 
-    public static function show(int $id): void
+    public static function show(string $idString): void
     {
+        $id = (int)$idString;
         $user = new User();
         $user = $user->read($id);
+        $reservations = $user->getReservations();
         require_once APP_ROOT . '/Views/Users/show.phtml';
+    }
+
+    public static function logout(): void
+    {
+        session_destroy();
+        header('Location: /');
+        exit();
     }
 }

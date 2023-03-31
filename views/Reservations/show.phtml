@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <?php /** @var string $movie */ ?>
+    <title>
+        <?=$movie ?>
+    </title>
+</head>
+<body>
+<h1><?= $movie ?></h1>
+<h3>Rezerwacja:</h3>
+<table>
+    <tr>
+        <th>Sala</th>
+        <th>Data</th>
+        <th>Miejsce</th>
+        <th>Rząd</th>
+    </tr>
+    <tr>
+        <?php /** @var string $hall */ ?>
+        <td><?=$hall?></td>
+        <?php /** @var DateTime $date */ ?>
+        <td><?= date_format($date, 'Y-m-d H:i:s') ?></td>
+        <?php /** @var int $column */ ?>
+        <td><?=$column?></td>
+        <?php /** @var int $row */ ?>
+        <td><?=$row?></td>
+    </tr>
+</table>
+<button onclick="window.location.href='/users/show/<?=$_SESSION['user_id']?>'">Powrót</button>
+</body>
+</html>
+
+

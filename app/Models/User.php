@@ -43,9 +43,23 @@ class User extends Entity
         $this->save();
     }
 
-    public function read(int $id)
+    public function read(int $id): User
     {
-        // TODO: Implement read() method.
+        $user = $this->find([
+            'id' => $id
+        ])[0];
+        $this->id = $user->getId();
+        $this->username = $user->getUsername();
+        $this->password = $user->getPassword();
+        return $this;
+    }
+
+    public function getReservations(): array
+    {
+        $reservation = new Reservation();
+        return $reservation->find([
+            'user' => $this->id
+        ]);
     }
 
     public function update(int $id, array $data)

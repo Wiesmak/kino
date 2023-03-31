@@ -99,6 +99,21 @@ class Movie extends Entity
         return $moviesArray;
     }
 
+    public function getReservedSeats(): array
+    {
+        $reservations = new Reservation();
+        $reservations = $reservations->find([
+            'movie' => $this->id
+        ]);
+        $reservedSeats = [];
+        foreach ($reservations as $reservation) {
+            $row = $reservation->getRow();
+            $column = $reservation->getColumn();
+            $reservedSeats[] = $row . '-' . $column;
+        }
+        return $reservedSeats;
+    }
+
     public function update(int $id, array $data)
     {
         $this->read($id);

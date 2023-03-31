@@ -10,7 +10,7 @@
 <body>
     <h1>Filmy:</h1>
     <ul>
-        <?php /** @var TYPE_NAME $movies */
+        <?php /** @var \App\Models\Movie[] $movies */
         foreach ($movies as $movie): ?>
             <li>
                 <a href="/movies/show/<?= $movie->getId() ?>">
